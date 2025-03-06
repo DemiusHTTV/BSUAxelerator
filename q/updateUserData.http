@@ -1,0 +1,5 @@
+PUT https://webcomp.bsu.ru/api/userData/update HTTP/1.1
+content-type: application/json
+Authorization: Bearer 3889|kAIJ4loKdJyzdzfQgXgTS8mlokfA9HTubBOonkuM
+
+{"user_name":"Трубачев Дмитрий Алексеевич","team_name":"Scope","description":"Обо мне","track_id":1}
