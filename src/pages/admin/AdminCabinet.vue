@@ -1,6 +1,7 @@
 <template>
     <main>
         <div class="container d-flex flex-column gap-5">
+            
             <div class="row">
                 <div class="col-12">
                     <h1>Личный кабинет администратора</h1>
@@ -10,9 +11,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-4">
-                    <button class="btn btn-danger" @click="logout()">Выйти</button>
-                    <button class="btn btn-success btn-md mt-5" @click="editPage()">Мои ставки</button>
+                <div class="col-4 flexability">
+                    <button class="btn btn-danger btn-md mt-5" @click="logout()">Выйти</button>
+                    
                     <button class="btn btn-success btn-md mt-5" @click="editPage()">Изменить</button>
                 </div>
             </div>
@@ -46,24 +47,19 @@ export default {
                 }                
             )
             .then(function (response) {
-                // обработка успешного запроса
-                //console.log("OK")
+        
                 env.userInfo=response["data"]["data"]
             })
             .catch(function (error) {
-                // обработка ошибки
+   
                 console.log(error);
             })
-            .finally(function () {
-                // выполняется всегда
-            });
+       
         },
         editPage(){
                this.$router.push('/editProfile')
        },
-       myBinds(){
-        this.$router.push('./myBinds')
-       }
+    
     },
     mounted(){
         this.getUserData()

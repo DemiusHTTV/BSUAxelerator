@@ -1,4 +1,5 @@
 <template>
+<div class="card h-100 shadow-boxx">
     <form class="form-signin">
 			<a href="/">
 				<img
@@ -57,6 +58,7 @@
 				Войти
 			</button>
 		</form>
+		</div>
 </template>
 <script>
 export default{

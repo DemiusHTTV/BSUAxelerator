@@ -19,9 +19,10 @@
             <option value="1">HTML - вёрстка</option>
             <option value="2">Фронтенд разработка на Vue.js</option>
         </select><br>
-
+<div class="flexability">
         <button class="btn btn-success" @click="editProfile()">Изменить</button>
         <button class="btn btn-danger" @click="backToLK()">Назад</button>
+        </div>
     </form>
 </template>
 <script>

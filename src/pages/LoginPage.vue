@@ -1,5 +1,6 @@
 <template>
-	<div>
+	
+		<div class ='backLogo'>
 		<p v-if="error" class="error-message">{{ error }}</p>
 		<LoginForm v-model:login="login" v-model:password="password" @sendData="sendData()"/>
 		<p class="mt-5 mb-3 text-muted">{{ currentYear }}  {{ message }}</p>

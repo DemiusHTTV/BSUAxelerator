@@ -1,6 +1,11 @@
 <template>
     <link rel = "stylesheet"  href ="UsContact.css">
-    <h1 align="center"> Версткой сайта, занималась команда <b>SCoPE</b> – “students's company of programmers engineers”</h1>
+     <div class="promo-section min-1">
+        <div class='promo1 '>
+        <h2 class="text-center mx-auto " >Версткой сайта, занималась команда <b>SCoPE</b> </h2>
+        </div>
+        </div>
+
     <section>
         <h2>Состав команды:</h2>
         <ul>

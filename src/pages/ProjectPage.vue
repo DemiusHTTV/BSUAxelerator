@@ -1,64 +1,64 @@
 <template>
-    <div class="container d-flex flex-column gap-5">
-        <h1>{{ item.title }}</h1>
-        <div class="row">
-            <div class="col-3">
-                <img :src=item.imgSrc class="card-img-top">                
-            </div>
-            <div class="col-8">
-                <p>{{ item.content }}</p>
-                <span class="badge bg-info" v-for="(item,index) in item.tags" :key="index">{{ item }}</span> 
-                </div>
+    <div class="container d-flex flex-column gap-5" v-if="item">
+      <h1>{{ item.title }}</h1>
+      <div class="row">
+        <div class="col-3">
+          <img :src="item.image" class="card-img-top" />
         </div>
+        <div class="col-8">
+          <p>{{ item.description }}</p>
+            </div>
+      </div>
     </div>
-</template>
-<script>
-
-export default {
+    <div v-else>
+      Загрузка...
+    </div>
+  </template>
+  
+  <script>
+  
+  
+  export default {
     name: 'ProjectPage',
-    components: {        
+    data() {
+      return {
+        id: null, 
+        item: null, 
+      };
     },
-    data(){
-        return{
-            id:0,
-            item:{}
-        }
+    created() {
+      const record_id = parseInt(this.$route.params.id, 10);
+  
+      if (record_id) {
+        this.id = record_id;
+        this.getProject(record_id); // Вызываем асинхронный метод
+      } else {
+        console.warn("No project ID provided in route parameters.");
+      }
     },
-    created(){
-        const record_id=this.$route.params.id
-        if (record_id){
-            this.id=record_id
-            this.item=this.getProject(record_id)
-        }
-    },
-    methods:{
-        getProject(record_id){
-            var projectItems=[
-               {
-                    id: 1,
-                    imgSrc: '/img/project_3.jpg',
-                    rating: 2.3, 'title': "BePed.ru",
-                    content: "Образовательный сайт для начинающего педагога дополнительного образования",
-                    tags: ["EduNet", "Сайт"]
-                },
-                {
-                    id: 2,
-                    imgSrc: '/img/project_2.jpg',
-                    rating: 3.6, title: "Разработка 3D-сканера помещений",
-                    content: "Образовательный сайт для начинающего педагога дополнительного образования",
-                    tags: ["TechNet", "Устройство"]
-                },
-                {
-                    id: 10,
-                    imgSrc: '/img/project_1.jpg',
-                    rating: 4.7, 'title': "No trash",
-                    content: "Мобильное приложение по сбору мусора в Республике Бурятия",
-                    tags: ["TechNet", "Устройство"]
-                },
-            ]
-            var it=projectItems.find(({id}) => id == record_id)
-            return it
-        }
-    }
+    methods: {
+      async getProject(record_id) {
+        try {
+          const response = await fetch('/data/projects.json')
+          const data = await response.json() 
+const foundProject = data.projects.find(project => 
+  project.id === record_id 
+);
+if(foundProject){
+  this.item =foundProject
 }
-</script>
+
+  
+                else {
+               this.item = null; 
+            console.warn(`Project with id ${record_id} not found in API.`);
+          }
+        } catch (error) {
+            this.item = null;
+          console.error("Error fetching project:", error);
+        }
+      },
+    },
+  };
+  </script>
+  
